@@ -1,0 +1,177 @@
+$ python processador-de-consultas.py
+INFO:Arquivo de configuração aberto
+INFO:Configuração 'LEIA': '../data/cfquery.xml'
+INFO:Configuração 'CONSULTAS': '../RESULT/consultas.csv'
+INFO:Configuração 'ESPERADOS': '../RESULT/esperados.csv'
+INFO:Encontrado 99 tags <QUERY> no XML
+INFO:Escrevendo 99 linhas no arquivo de CONSULTAS
+INFO:Escrevendo 4820 linhas no arquivo de ESPERADOS
+
+$ python gerador-lista-invertida.py
+INFO:Arquivo de configuração aberto
+INFO:Configuração 'LEIA': '../data/cf74.xml'
+INFO:Configuração 'LEIA': '../data/cf75.xml'
+INFO:Configuração 'LEIA': '../data/cf76.xml'
+INFO:Configuração 'LEIA': '../data/cf77.xml'
+INFO:Configuração 'LEIA': '../data/cf78.xml'
+INFO:Configuração 'LEIA': '../data/cf79.xml'
+INFO:Configuração 'ESCREVA': '../RESULT/lista-invertida.csv'
+INFO:Lendo 6 arquivos
+INFO:Documento '36' não possui ABSTRACT ou EXTRACT :(
+INFO:Documento '128' não possui ABSTRACT ou EXTRACT :(
+INFO:Documento '132' não possui ABSTRACT ou EXTRACT :(
+INFO:Documento '168' não possui ABSTRACT ou EXTRACT :(
+INFO:Documento '298' não possui ABSTRACT ou EXTRACT :(
+INFO:Documento '329' não possui ABSTRACT ou EXTRACT :(
+INFO:Documento '493' não possui ABSTRACT ou EXTRACT :(
+INFO:Documento '512' não possui ABSTRACT ou EXTRACT :(
+INFO:Documento '551' não possui ABSTRACT ou EXTRACT :(
+INFO:Documento '595' não possui ABSTRACT ou EXTRACT :(
+INFO:Documento '712' não possui ABSTRACT ou EXTRACT :(
+INFO:Documento '729' não possui ABSTRACT ou EXTRACT :(
+INFO:Documento '735' não possui ABSTRACT ou EXTRACT :(
+INFO:Documento '839' não possui ABSTRACT ou EXTRACT :(
+INFO:Documento '894' não possui ABSTRACT ou EXTRACT :(
+INFO:Documento '932' não possui ABSTRACT ou EXTRACT :(
+INFO:Documento '939' não possui ABSTRACT ou EXTRACT :(
+INFO:Documento '1023' não possui ABSTRACT ou EXTRACT :(
+INFO:Documento '1069' não possui ABSTRACT ou EXTRACT :(
+INFO:Documento '1089' não possui ABSTRACT ou EXTRACT :(
+INFO:Documento '1150' não possui ABSTRACT ou EXTRACT :(
+INFO:Documento '1154' não possui ABSTRACT ou EXTRACT :(
+INFO:Documento '1187' não possui ABSTRACT ou EXTRACT :(
+INFO:Documento '1225' não possui ABSTRACT ou EXTRACT :(
+INFO:Processados 1239 registros, dos quais 1215 tinham conteúdo
+INFO:Escrevendo 11558 linhas no arquivo de ESCREVA
+
+$ python indexador.py
+INFO:Arquivo de configuração aberto
+INFO:Configuração 'LEIA': '../RESULT/lista-invertida.csv'
+INFO:Configuração 'ESCREVA': '../RESULT/tfidf.csv'
+INFO:Encontradas 9141 palavras válidas de um total de 11558 (79.09%)
+INFO:Número total de documentos distintos: '1215'
+INFO:Teste da função de TF:
+        Termo 'THE', doc  #333:  0.1239 (freq.)
+        Termo 'FET', doc #1220:  0.0244 (infreq.)
+INFO:Teste da função de IDF:
+        Termo 'THE':  0.0098 (freq.)
+        Termo 'FET':  3.0846 (infreq.)
+INFO:Teste da função de TF-IDF:
+        Termo 'THE', doc  #333:  0.0012 (freq.)
+        Termo 'THE', doc #1220:  0.0008 (infreq.)
+        Termo 'FET', doc  #333:  0.0000 (infreq.)
+        Termo 'FET', doc #1220:  0.0752 (freq.)
+INFO:Escrevendo matriz de documentos/tf-idf
+INFO:Levou 8.0000 segundos
+
+$ python buscador.py
+INFO:Arquivo de configuração aberto
+INFO:Configuração 'MODELO': '../RESULT/tfidf.csv'
+INFO:Configuração 'CONSULTAS': '../RESULT/consultas.csv'
+INFO:Configuração 'RESULTADOS': '../RESULT/resultados.csv'
+INFO:Lendo arquivo de MODELO
+INFO:Lidas '9142' linhas de MODELO
+INFO:Lendo arquivo de CONSULTAS
+INFO:Lidas '100' linhas de CONSULTAS
+INFO:Calculando similaridades
+INFO:Consulta '00001' levou 2.4219 segundos
+INFO:Consulta '00002' levou 2.3594 segundos
+INFO:Consulta '00003' levou 2.4531 segundos
+INFO:Consulta '00004' levou 2.4219 segundos
+INFO:Consulta '00005' levou 2.5312 segundos
+INFO:Consulta '00006' levou 2.4531 segundos
+INFO:Consulta '00007' levou 2.2188 segundos
+INFO:Consulta '00008' levou 2.1719 segundos
+INFO:Consulta '00009' levou 2.2031 segundos
+INFO:Consulta '00010' levou 2.3281 segundos
+INFO:Consulta '00011' levou 2.2031 segundos
+INFO:Consulta '00012' levou 2.2188 segundos
+INFO:Consulta '00013' levou 2.2812 segundos
+INFO:Consulta '00014' levou 2.3594 segundos
+INFO:Consulta '00015' levou 2.2812 segundos
+INFO:Consulta '00016' levou 2.2500 segundos
+INFO:Consulta '00017' levou 2.1719 segundos
+INFO:Consulta '00018' levou 2.1719 segundos
+INFO:Consulta '00019' levou 2.2969 segundos
+INFO:Consulta '00020' levou 2.2031 segundos
+INFO:Consulta '00021' levou 2.2500 segundos
+INFO:Consulta '00022' levou 2.1719 segundos
+INFO:Consulta '00023' levou 2.2812 segundos
+INFO:Consulta '00024' levou 2.2031 segundos
+INFO:Consulta '00025' levou 2.4219 segundos
+INFO:Consulta '00026' levou 2.3906 segundos
+INFO:Consulta '00027' levou 2.4219 segundos
+INFO:Consulta '00028' levou 2.5312 segundos
+INFO:Consulta '00029' levou 2.4219 segundos
+INFO:Consulta '00030' levou 2.7812 segundos
+INFO:Consulta '00031' levou 2.5312 segundos
+INFO:Consulta '00032' levou 2.1562 segundos
+INFO:Consulta '00033' levou 2.1406 segundos
+INFO:Consulta '00034' levou 2.2344 segundos
+INFO:Consulta '00035' levou 2.1875 segundos
+INFO:Consulta '00036' levou 2.4844 segundos
+INFO:Consulta '00037' levou 2.2344 segundos
+INFO:Consulta '00038' levou 2.3906 segundos
+INFO:Consulta '00039' levou 2.3750 segundos
+INFO:Consulta '00040' levou 2.7500 segundos
+INFO:Consulta '00041' levou 2.5781 segundos
+INFO:Consulta '00042' levou 2.2812 segundos
+INFO:Consulta '00043' levou 2.6719 segundos
+INFO:Consulta '00044' levou 2.2344 segundos
+INFO:Consulta '00045' levou 2.5000 segundos
+INFO:Consulta '00046' levou 2.1562 segundos
+INFO:Consulta '00047' levou 2.1094 segundos
+INFO:Consulta '00048' levou 2.1250 segundos
+INFO:Consulta '00049' levou 2.1094 segundos
+INFO:Consulta '00050' levou 2.0938 segundos
+INFO:Consulta '00051' levou 2.1094 segundos
+INFO:Consulta '00052' levou 2.2656 segundos
+INFO:Consulta '00053' levou 2.3281 segundos
+INFO:Consulta '00054' levou 2.2188 segundos
+INFO:Consulta '00055' levou 2.2656 segundos
+INFO:Consulta '00056' levou 2.2656 segundos
+INFO:Consulta '00057' levou 2.2812 segundos
+INFO:Consulta '00058' levou 2.2344 segundos
+INFO:Consulta '00059' levou 2.4844 segundos
+INFO:Consulta '00060' levou 2.2500 segundos
+INFO:Consulta '00061' levou 2.1094 segundos
+INFO:Consulta '00062' levou 2.2812 segundos
+INFO:Consulta '00063' levou 2.1562 segundos
+INFO:Consulta '00064' levou 2.2500 segundos
+INFO:Consulta '00065' levou 2.1406 segundos
+INFO:Consulta '00066' levou 2.2188 segundos
+INFO:Consulta '00067' levou 2.2500 segundos
+INFO:Consulta '00068' levou 2.2031 segundos
+INFO:Consulta '00069' levou 2.3125 segundos
+INFO:Consulta '00070' levou 2.1875 segundos
+INFO:Consulta '00071' levou 2.4062 segundos
+INFO:Consulta '00072' levou 2.2188 segundos
+INFO:Consulta '00073' levou 2.4062 segundos
+INFO:Consulta '00074' levou 2.1719 segundos
+INFO:Consulta '00075' levou 2.1094 segundos
+INFO:Consulta '00076' levou 2.2031 segundos
+INFO:Consulta '00077' levou 2.2969 segundos
+INFO:Consulta '00078' levou 2.1875 segundos
+INFO:Consulta '00079' levou 2.1719 segundos
+INFO:Consulta '00080' levou 2.1094 segundos
+INFO:Consulta '00081' levou 2.2344 segundos
+INFO:Consulta '00082' levou 2.1562 segundos
+INFO:Consulta '00083' levou 2.2344 segundos
+INFO:Consulta '00084' levou 2.2969 segundos
+INFO:Consulta '00085' levou 2.5156 segundos
+INFO:Consulta '00086' levou 2.2969 segundos
+INFO:Consulta '00087' levou 2.5469 segundos
+INFO:Consulta '00088' levou 2.3594 segundos
+INFO:Consulta '00089' levou 2.2500 segundos
+INFO:Consulta '00090' levou 2.4062 segundos
+INFO:Consulta '00091' levou 2.1406 segundos
+INFO:Consulta '00092' levou 2.1094 segundos
+INFO:Consulta '00094' levou 2.2500 segundos
+INFO:Consulta '00095' levou 2.2656 segundos
+INFO:Consulta '00096' levou 2.4688 segundos
+INFO:Consulta '00097' levou 2.5156 segundos
+INFO:Consulta '00098' levou 2.5156 segundos
+INFO:Consulta '00099' levou 2.5312 segundos
+INFO:Consulta '00100' levou 2.4219 segundos
+INFO:Cálculo de todas as similaridades levou 3.7971 minutos
+INFO:Escrevendo no arquivo de RESULTADOS

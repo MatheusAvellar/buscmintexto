@@ -1,0 +1,39 @@
+O arquivo intermediário modelo, "tfidf.csv", é simples e segue o padrão dos
+outros arquivos CSV utilizados nas outras etapas.
+
+A primeira linha do arquivo possui os IDs dos documentos. De relance, esta pode
+parecer simplesmente uma contagem de 1 a 1239. Contudo, nem todo documento
+possui ABSTRACT/EXTRACT, então há documentos faltantes nessa lista. Assim, sua
+presença se faz necessária.
+
+As linhas seguintes possuem:
+- Um termo, e.g. "THE"
+- Um ponto e vírgula, ';'
+- A lista de TF-IDFs calculados para cada documento, separados por ';'
+
+Dessa maneira, o i-ésimo valor da lista do termo T representa o TF-IDF do
+documento i para T.
+
+Por exemplo, a linha (fictícia): "THE ; 0.5 ; 0.25", indica que o termo "THE"
+possui TF-IDF com o documento 1 de 0.5, e com o documento 2 de 0.25.
+
+Recorte do arquivo final para exemplificação:
+ _____________
+/  tfidf.csv  \_______________________________________________________________
+|                                                                             |
+| 1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28; |
+| THE;0.0011902240596531998;0.00022014670577044147;0.0005337411017507319;0.00 |
+| SIGNIFICANCE;0.010180505670509227;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0 |
+| OF;0.000553352349944422;0.0002436890048090365;0.0003544913491831453;0.00040 |
+| PSEUDOMONAS;0.02244958136895846;0.0;0.0;0.0;0.0;0.0;0.005761707894380575;0. |
+| AERUGINOSA;0.02223191265006137;0.0;0.0;0.0;0.0;0.0421506783191915;0.0342350 |
+| INFECTION;0.021038009024831033;0.0;0.0;0.0;0.0;0.019943546127585487;0.0;0.0 |
+| IN;0.0009289631818156029;0.0007636589564799943;0.0005951170383506207;0.0013 |
+| RESPIRATORY;0.019452200832885232;0.0;0.0;0.0;0.0;0.01229349108513749;0.0099 |
+| TRACT;0.02503487074938168;0.0;0.0;0.0;0.0;0.015821652419647766;0.0128504500 |
+| CYSTIC;0.0003589078904450627;0.0008851262260600041;0.00045985073463273657;0 |
+| FIBROSIS;0.00035641317798098025;0.0008789738524643722;0.0004566543842881309 |
+| PATIENTS;0.005601542820157937;0.0;0.0035884883691636787;0.00395971130390474 |
+| HAVE;0.005464492458304458;0.0;0.0;0.0;0.0;0.0025901062519130954;0.002103701 |
+| BEEN;0.007049649335725108;0.0;0.0;0.0;0.0;0.00334145228629745;0.00271394950 |
+|_____________________________________________________________________________|
