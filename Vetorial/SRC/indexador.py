@@ -23,7 +23,7 @@ with open("../INDEX.CFG", "r") as config_file:
 
 # Dicionário de termos vs documentos a ser recuperado do arquivo
 td = {}
-not_AZ_regex = re.compile(r"[^A-Z]")
+not_AZ_regex = re.compile(r"[^a-z]")
 line_count = 0
 # Abre arquivo de lista invertida
 with open(LEIA, "r") as data_file:
@@ -35,7 +35,7 @@ with open(LEIA, "r") as data_file:
     # Regras:
     # - Apenas palavras com 2 letras ou mais
     if len(term) < 2: continue
-    # - Apenas palavras com apenas letras (maiúsculas)
+    # - Apenas palavras com apenas letras (minúsculas)
     if not_AZ_regex.search(term): continue
 
     # Converte lista texto para lista de ints em Python
@@ -96,16 +96,16 @@ def tfidf(doc, term):
   return tf(doc, term) * idf(term)
 
 logging.info("Teste da função de TF:"
-  + f"\n\tTermo 'THE', doc  #333:  {tf(333, 'THE'):.4f} (freq.)"
-  + f"\n\tTermo 'FET', doc #1220:  {tf(1220, 'FET'):.4f} (infreq.)")
+  + f"\n\tTermo 'the', doc  #333:  {tf(333, 'the'):.4f} (freq.)"
+  + f"\n\tTermo 'fet', doc #1220:  {tf(1220, 'fet'):.4f} (infreq.)")
 logging.info("Teste da função de IDF:"
-  + f"\n\tTermo 'THE':  {idf('THE'):.4f} (freq.)"
-  + f"\n\tTermo 'FET':  {idf('FET'):.4f} (infreq.)")
+  + f"\n\tTermo 'the':  {idf('the'):.4f} (freq.)"
+  + f"\n\tTermo 'fet':  {idf('fet'):.4f} (infreq.)")
 logging.info("Teste da função de TF-IDF:"
-  + f"\n\tTermo 'THE', doc  #333:  {tfidf(333, 'THE'):.4f} (freq.)"
-  + f"\n\tTermo 'THE', doc #1220:  {tfidf(1220, 'THE'):.4f} (infreq.)"
-  + f"\n\tTermo 'FET', doc  #333:  {tfidf(333, 'FET'):.4f} (infreq.)"
-  + f"\n\tTermo 'FET', doc #1220:  {tfidf(1220, 'FET'):.4f} (freq.)")
+  + f"\n\tTermo 'the', doc  #333:  {tfidf(333, 'the'):.4f} (freq.)"
+  + f"\n\tTermo 'the', doc #1220:  {tfidf(1220, 'the'):.4f} (infreq.)"
+  + f"\n\tTermo 'fet', doc  #333:  {tfidf(333, 'fet'):.4f} (infreq.)"
+  + f"\n\tTermo 'fet', doc #1220:  {tfidf(1220, 'fet'):.4f} (freq.)")
 
 logging.info(f"Escrevendo matriz de documentos/tf-idf")
 start = time.process_time()

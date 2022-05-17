@@ -10,6 +10,7 @@ from bmt_util import cleanup
 if __name__ == "__main__":
   logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
 
+STEMMER = False
 LEIA = []
 ESCREVA = ""
 
@@ -17,7 +18,11 @@ ESCREVA = ""
 with open("../GLI.CFG", "r") as config_file:
   logging.info("Arquivo de configuração aberto")
   for line in config_file:
-    if line.startswith("LEIA="):
+    if line.startswith("STEMMER"):
+      # Se encontra STEMMER, liga a flag
+      # Caso contrário, assume que NOSTEMMER está presente
+      STEMMER = True
+    elif line.startswith("LEIA="):
       _leia = line[5:].strip()
       LEIA.append(_leia)
       logging.info(f"Configuração 'LEIA': '{_leia}'")
@@ -54,8 +59,8 @@ for path in LEIA:
 
     # Para cada texto descritivo (apelidado "stract"), provavelmente só 1 mesmo
     for stract in all_stracts:
-      # Faz a arrumação normal de maiúsculas, ';', etc
-      text = cleanup(stract.firstChild.nodeValue)
+      # Faz a arrumação normal, ';', etc
+      text = cleanup(stract.firstChild.nodeValue, STEMMER)
       # Tokenização
       nltk_tokens = nltk.word_tokenize(text)
       # Remove pontuação

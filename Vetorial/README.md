@@ -42,9 +42,18 @@ python buscador.py
 
 Lê os arquivos `tfidf.csv`, `consultas.csv` e `resultados.csv`.
 
-Gera o arquivo `resultados.csv` (≈4 MB).
+Gera um arquivo `resultados-STEMMER.csv` ou `resultados-NOSTEMMER.csv` (≈4 MB),
+dependendo da configuração.
 
 Demora ≈4 minutos. Este é o script mais
 demorado, pois precisa calcular a similaridade entre todas as consultas e todos
-os documentos. O cálculo de similaridade de cada consulta leva entre 2 e 3
-segundos para ser realizado; mas há 100 consultas.
+os documentos.
+
+O cálculo de similaridade de cada consulta, sem stemming, leva entre 2 e 3
+segundos para ser realizado; com stemming, leva entre 1 e 2 segundos.
+
+---
+
+```bash
+python avaliador.py
+```

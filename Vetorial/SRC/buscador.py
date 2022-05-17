@@ -8,6 +8,7 @@ import logging
 if __name__ == "__main__":
   logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
 
+STEMMER = False
 MODELO = ""
 CONSULTAS = ""
 RESULTADOS = ""
@@ -16,7 +17,11 @@ RESULTADOS = ""
 with open("../BUSCA.CFG", "r") as config_file:
   logging.info("Arquivo de configuração aberto")
   for line in config_file:
-    if line.startswith("MODELO="):
+    if line.startswith("STEMMER"):
+      # Se encontra STEMMER, liga a flag
+      # Caso contrário, assume que NOSTEMMER está presente
+      STEMMER = True
+    elif line.startswith("MODELO="):
       MODELO = line[7:].strip()
       logging.info(f"Configuração 'MODELO': '{MODELO}'")
     elif line.startswith("CONSULTAS="):
@@ -118,7 +123,10 @@ for query_num in queries:
 total_time = (time.process_time() - start_all) / 60
 logging.info(f"Cálculo de todas as similaridades levou {total_time:.4f} minutos")
 
-logging.info(f"Escrevendo no arquivo de RESULTADOS")
-with open(RESULTADOS, "w") as file:
+_out_ = RESULTADOS.rpartition(".")
+_out_filext = _out_[-1] or "csv"
+_out_filename = f"{_out_[0]}-{'STEMMER' if STEMMER else 'NOSTEMMER'}.{_out_filext}"
+logging.info(f"Escrevendo no arquivo de RESULTADOS, '{_out_filename}'")
+with open(_out_filename, "w") as file:
   for query_num in queries:
     file.write(f"{query_num};{ranking[query_num]}\n")

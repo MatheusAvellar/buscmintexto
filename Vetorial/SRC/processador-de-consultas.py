@@ -13,6 +13,7 @@ def get_votes(score_attr):
   # e.g.: "0101"->2, "2121"->4
   return len(score_attr.replace("0", ""))
 
+STEMMER = False
 LEIA = ""
 CONSULTAS = ""
 ESPERADOS = ""
@@ -21,7 +22,11 @@ ESPERADOS = ""
 with open("../PC.CFG", "r") as config_file:
   logging.info("Arquivo de configuração aberto")
   for line in config_file:
-    if line.startswith("LEIA="):
+    if line.startswith("STEMMER"):
+      # Se encontra STEMMER, liga a flag
+      # Caso contrário, assume que NOSTEMMER está presente
+      STEMMER = True
+    elif line.startswith("LEIA="):
       LEIA = line[5:].strip()
       logging.info(f"Configuração 'LEIA': '{LEIA}'")
     elif line.startswith("CONSULTAS="):
@@ -44,7 +49,7 @@ for query in all_queries:
   # Assume que existe somente 1 <QueryNumber> e 1 <QueryText> dentro
   # Pega o texto deles
   query_number = query.getElementsByTagName("QueryNumber")[0].firstChild.nodeValue
-  text = cleanup(query.getElementsByTagName("QueryText")[0].firstChild.nodeValue)
+  text = cleanup(query.getElementsByTagName("QueryText")[0].firstChild.nodeValue, STEMMER)
   consultas_str.append(f"{query_number};{text}")
 
   # Para cada <Records> dessa <QUERY> (deve ter só um)
