@@ -54,6 +54,20 @@ segundos para ser realizado; com stemming, leva entre 1 e 2 segundos.
 
 ---
 
+Antes de executar o script de avaliação a seguir, é necessário modificar as
+configurações e reexecutar os scritps anteriores para garantir a existência de
+resultados com Porter Stemmer, e sem Porter Stemmer.
+
+Ou seja, modificar os arquivos `BUSCA.CFG`, `GLI.CFG`, `PC.CFG` para trocar
+o comando `NOSTEMMER` por `STEMMER`, ou vice-versa.
+
+---
+
 ```bash
 python avaliador.py
 ```
+
+Lê os arquivos `esperados.csv`, `resultados-STEMMER.csv` e
+`resultados-NOSTEMMER.csv`.
+
+Gera arquivos de avaliação no diretório `AVALIA/`.
